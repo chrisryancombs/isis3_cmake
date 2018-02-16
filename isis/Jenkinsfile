@@ -1,5 +1,7 @@
 pipeline { 
-    agent any 
+    agent {
+        label 'cmake'
+    }
     stages {
         stage('Inject Variables') { 
             steps { 
@@ -7,9 +9,6 @@ pipeline {
                     ISISROOT=$PWD/isis
                     ISIS3DATA=/usgs/cpkgs/isis3/data
                     ISIS3TESTDATA=/usgs/cpkgs/isis3/testData
-                    echo $ISISROOT
-                    echo $ISIS3TESTDATA
-                    echo $ISIS3DATA
                 '''
             }
         }
