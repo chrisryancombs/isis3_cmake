@@ -1,6 +1,9 @@
 pipeline { 
     agent {
-        label 'cmake'
+//        label 'cmake'
+        docker {
+            image 'usgsastro/docker_linux_isisdeps'
+        }
     }
     stages {
         stage('Inject Variables') { 
