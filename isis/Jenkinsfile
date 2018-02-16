@@ -29,7 +29,7 @@ pipeline {
             steps {
               dir('build'){
                   sh '''
-                      ctest -R_unit
+                      ctest -R _unit
                   '''
               }
             }
