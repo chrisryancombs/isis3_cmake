@@ -42,12 +42,12 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                mail to: 'ccombs@usgs.gov',
-                        subject: "Build Finished: ${currentBuild.fullDisplayName}",
-                        body: "Link: ${env.BUILD_URL}"
-            }
+    }
+    post {
+        always {
+            mail to: 'ccombs@usgs.gov',
+                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
+                    body: "Link: ${env.BUILD_URL}"
         }
     }
 }
