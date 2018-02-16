@@ -35,12 +35,17 @@ pipeline {
         }
         stage('Test'){
             steps {
-              dir('build'){
-                  sh '''
-                      ctest -R _unit
-                  '''
-              }
+                dir('build'){
+                    sh '''
+                        ctest -R _unit
+                    '''
+                }
             }
+        }
+        post {
+            mail to: 'krodriguez@usgs.gov',
+                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
+                    body: "Link: ${env.BUILD_URL}"
         }
     }
 }
