@@ -43,7 +43,7 @@ pipeline {
             }
         }
         post {
-            mail to: 'krodriguez@usgs.gov',
+            mail to: 'ccombs@usgs.gov',
                     subject: "Build Finished: ${currentBuild.fullDisplayName}",
                     body: "Link: ${env.BUILD_URL}"
         }
