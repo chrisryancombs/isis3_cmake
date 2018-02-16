@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('Prep') { 
             steps { 
+                sh 'pwd'
+                sh 'ls'
                 sh 'mkdir -p ./install'
                 sh 'mkdir -p ./build' 
                 sh 'cd ./build'
