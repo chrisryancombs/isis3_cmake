@@ -20,9 +20,9 @@ pipeline {
         }
         stage('Inject Variables') { 
             steps { 
-                sh 'setenv ISISROOT ../isis'
-                sh 'setenv ISIS3DATA /usgs/cpkgs/isis3/data'
-                sh 'setenv ISIS3TESTDATA /usgs/cpkgs/isis3/testData'
+                sh 'ISISROOT="../isis"'
+                sh 'ISIS3DATA="/usgs/cpkgs/isis3/data"'
+                sh 'ISIS3TESTDATA="/usgs/cpkgs/isis3/testData"'
                 sh 'echo $ISISROOT'
                 sh 'echo $ISIS3TESTDATA'
                 sh 'echo $ISIS3DATA'
