@@ -1,9 +1,9 @@
 pipeline { 
     agent {
-//        label 'cmake'
-        docker {
-            image 'usgsastro/docker_linux_isisdeps'
-        }
+        label 'cmake'
+//        docker {
+//            image 'usgsastro/docker_linux_isisdeps'
+//        }
     }
     stages {
         stage('Inject Variables') { 
@@ -45,10 +45,14 @@ pipeline {
         }
     }
     post {
+        success {
+            archiveArtifacts artifacts: "build/objects/*.o"
+        }
         always {
             mail to: 'ccombs@usgs.gov',
                     subject: "Build Finished: ${currentBuild.fullDisplayName}",
                     body: "Link: ${env.BUILD_URL}"
+            deleteDir()
         }
     }
 }
