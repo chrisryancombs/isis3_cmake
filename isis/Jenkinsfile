@@ -6,7 +6,7 @@ pipeline {
 //        }
     }
     environment {
-        ISISROOT=$PWD + '/isis'
+        ISISROOT="$PWD" + '/isis'
         ISIS3DATA='/usgs/cpkgs/isis3/data'
         ISIS3TESTDATA='/usgs/cpkgs/isis3/testData'
     }
