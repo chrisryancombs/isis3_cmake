@@ -1,26 +1,23 @@
 pipeline { 
     agent {
-//        label 'cmake'
-        docker {
-            image 'usgsastro/docker_linux_isisdeps'
-        }
+        label 'cmake'
+//        docker {
+//            image 'usgsastro/docker_linux_isisdeps'
+//        }
+    }
+    environment {
+        ISISROOT='$PWD/isis'
+        ISIS3DATA='/usgs/cpkgs/isis3/data'
+        ISIS3TESTDATA='/usgs/cpkgs/isis3/testData'
     }
     stages {
-        stage('Inject Variables') { 
-            steps { 
-                sh '''
-                    ISISROOT=$PWD/isis
-                    ISIS3DATA=/usgs/cpkgs/isis3/data
-                    ISIS3TESTDATA=/usgs/cpkgs/isis3/testData
-                    mkdir -p ./install
-                    mkdir -p ./build
-                '''
-            }
-        }
         stage('Config') { 
             steps { 
                 dir('build'){
                     sh '''
+                        echo $ISISROOT
+                        mkdir -p ./install
+                        mkdir -p ./build   
                         cmake -GNinja -DCMAKE_INSTALL_PREFIX=install -Disis3Data=/usgs/cpkgs/isis3/data -Disis3TestData=/usgs/cpkgs/isis3/testData ../isis
                     '''
                 }
