@@ -34,15 +34,15 @@ pipeline {
                 }
             }
         }
-        stage('Test'){
-            steps {
-                dir('build'){
-                    sh '''
-                        ctest -R _unit
-                    '''
-                }
-            }
-        }
+//        stage('Test'){
+//            steps {
+//                dir('build'){
+//                    sh '''
+//                        ctest -R _unit
+//                    '''
+//                }
+//            }
+//        }
     }
     post {
         success {
