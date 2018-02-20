@@ -11,11 +11,7 @@ pipeline {
                 sh '''
                     pwd
                     ls
-                    ISISROOT=$PWD/isis
-                    ISIS3DATA=/usgs/cpkgs/isis3/data
-                    ISIS3TESTDATA=/usgs/cpkgs/isis3/testData
-                    mkdir -p ./install
-                    mkdir -p ./build
+                    mkdir -p ./install ./build
                 '''
             }
         }
