@@ -2,8 +2,7 @@ pipeline {
     agent {
  //       label 'cmake'
         docker {
-            image 'usgsastro/docker_linux_isisdeps'
-            args '-v /workspace/ /workspace/'
+            args '-v /workspace/ /workspace/ usgsastro/docker_linux_isisdeps'
         }
     }
     stages {
