@@ -1,6 +1,8 @@
 pipeline { 
     agent {
-        docker.image('usgsastro/docker_linux_isisdeps')
+        docker {
+            image 'usgsastro/docker_linux_isisdeps'
+        }
     }
     stages {
         stage('Inject Variables') { 
