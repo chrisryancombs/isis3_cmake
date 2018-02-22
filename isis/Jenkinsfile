@@ -1,7 +1,7 @@
 pipeline { 
     agent {
-        label 'cmake'
         docker {
+            label 'cmake'
             image 'usgsastro/docker_linux_isisdeps'
         }
     }
