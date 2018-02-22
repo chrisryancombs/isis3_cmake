@@ -1,9 +1,6 @@
 pipeline { 
     agent {
-        docker {
-            image 'usgsastro/docker_linux_isisdeps'
-         //   args '-v /workspace/ISIS3_cmake:/workspace/ISIS3_cmake -v /workspace/ISIS3_cmake@tmp:/workspace/ISIS3_cmake@tmp'
-        }
+        docker.image('usgsastro/docker_linux_isisdeps')
     }
     stages {
         stage('Inject Variables') { 
