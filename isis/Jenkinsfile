@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build') { 
             steps { 
-                sh "cd build && ninja && ninja install"
+                sh "cd build && make && make install"
             }
         }
 //        stage('Test'){
