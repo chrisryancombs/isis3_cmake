@@ -1,14 +1,15 @@
 pipeline { 
     agent {
-        docker {
-            label 'cmake'
-            image 'usgsastro/docker_linux_isisdeps'
-        }
+     //   docker {
+     //       label 'cmake'
+     //       image 'usgsastro/docker_linux_isisdeps'
+     //       args '--privileged
+     //   }
     }
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build"
+                sh "docker volume ls && mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
