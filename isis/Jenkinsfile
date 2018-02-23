@@ -1,11 +1,11 @@
 pipeline { 
-    agent {
+    agent any
      //   docker {
      //       label 'cmake'
      //       image 'usgsastro/docker_linux_isisdeps'
      //       args '--privileged
      //   }
-    }
+   // }
     stages {
         stage('Inject Variables') { 
             steps { 
