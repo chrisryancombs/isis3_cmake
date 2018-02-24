@@ -3,6 +3,7 @@ pipeline {
         docker {
             label 'cmake'
             image 'usgsastro/docker_linux_isisdeps'
+            args  '-v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007'  
         }
     }
     stages {
