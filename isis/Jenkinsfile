@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "docker volume ls && mkdir -p ./install ./build"
+                sh "mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
