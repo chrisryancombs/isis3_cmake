@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build && ls /opt/conda/envs/isisdeps/lib/ "
+                sh "mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
@@ -33,16 +33,16 @@ pipeline {
 //            }
 //        }
     }
-    post {
-        success {
-            sh 'pwd && ls'
-            archiveArtifacts artifacts: "build/objects/*.o"
-        }
-        always {
-            mail to: 'ccombs@usgs.gov',
-                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
-                    body: "Link: ${env.BUILD_URL}"
+//    post {
+//        success {
+//            sh 'pwd && ls'
+//            archiveArtifacts artifacts: "build/objects/*.o"
+//        }
+//        always {
+//            mail to: 'ccombs@usgs.gov',
+//                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
+//                    body: "Link: ${env.BUILD_URL}"
 //            cleanWs()
-        }
-    }
+//        }
+//    }
 }
