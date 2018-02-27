@@ -9,7 +9,12 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build && cp /opt/conda/envs/isisdeps/bin/cmake /usr/bin && rm -r /opt/conda/envs/isisdeps/"
+                sh '''
+                    mkdir -p ./install ./build
+                    cp /opt/conda/envs/isisdeps/bin/cmake /usr/bin
+                    rm -r /opt/conda/envs/isisdeps
+                    echo $PATH
+                   '''
             }
         }
         stage('Config') { 
