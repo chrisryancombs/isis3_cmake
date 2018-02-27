@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build && ls /opt/conda/envs/isisdeps/libexec"
+                sh "mkdir -p ./install ./build && echo ${PATH}"
             }
         }
         stage('Config') { 
