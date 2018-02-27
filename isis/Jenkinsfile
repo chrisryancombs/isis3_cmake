@@ -2,17 +2,14 @@ pipeline {
     agent {
         docker {
             label 'cmake'
-            image 'usgsastro/docker_linux_isisdeps'
+            image 'fedora:25'
             args  '-v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007 -v /usgs/cpkgs/isis3/data:/usgs/cpkgs/isis3/data -v /usgs/cpkgs/isis3/testData:/usgs/cpkgs/isis3/testData'  
         }
     }
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh '''
-                    mkdir -p ./install ./build
-                    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-                   '''
+                sh "mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
