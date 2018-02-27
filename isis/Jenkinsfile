@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build"
+                sh "mkdir -p ./install ./build && tree "
             }
         }
         stage('Config') { 
