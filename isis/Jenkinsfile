@@ -1,5 +1,11 @@
 pipeline { 
-    agent { dockerfile true }
+    agent {         
+        docker {
+            label 'cmake'
+            image 'usgsastro/docker_linux_isisdeps'
+            args  '-e "use_conda=0" -v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007 -v /usgs/cpkgs/isis3/data:/usgs/cpkgs/isis3/data -v /usgs/cpkgs/isis3/testData:/usgs/cpkgs/isis3/testData'  
+        }
+    }
     stages {
         stage('Inject Variables') { 
             steps { 
