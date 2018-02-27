@@ -11,6 +11,8 @@ pipeline {
             steps { 
                 sh '''
                     mkdir -p ./install ./build
+                    cp /opt/conda/envs/isisdeps/bin/cmake /usr/bin
+                    rm -r /opt/conda/envs/isisdeps
                     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
                    '''
             }
