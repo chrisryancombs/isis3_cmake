@@ -33,16 +33,16 @@ pipeline {
 //            }
 //        }
     }
-    post {
+//    post {
 //        success {
 //            sh 'pwd && ls'
 //            archiveArtifacts artifacts: "build/objects/*.o"
 //        }
-        always {
+//        always {
 //            mail to: 'ccombs@usgs.gov',
 //                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
 //                    body: "Link: ${env.BUILD_URL}"
 //            cleanWs()
-        }
-    }
+//        }
+//    }
 }
