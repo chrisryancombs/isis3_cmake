@@ -147,9 +147,9 @@ find_package(X11       6       REQUIRED)
 # v007 might have different versions installed for our mac and linux systems.
 # Im this case, we specify the version numbers being searched for in the non-traditional installs.
 if(APPLE)
-  find_package(Geos    3.5.1   REQUIRED)
-else(APPLE)
   find_package(Geos    3.5.0   REQUIRED)
+else(APPLE)
+  find_package(Geos    3.5.1   REQUIRED)
 endif(APPLE)
 
 
