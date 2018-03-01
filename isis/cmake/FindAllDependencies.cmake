@@ -36,10 +36,6 @@ find_program(PROTOC protoc REQUIRED)
 
 include(FindProtobuf)
 
-
-find_package(Geos 3.5.0 REQUIRED)
-
-
 if(APPLE)
   find_package(Qt5 COMPONENTS
                   Core
