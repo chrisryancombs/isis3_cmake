@@ -156,10 +156,10 @@ endif(APPLE)
 
 
 # Only include Kakadu if it is available
-if(${JP2KFLAG})
+# if(${JP2KFLAG})
   message("ENABLING KAKADU")
   find_package(Kakadu)
-endif(${JP2KFLAG})
+# endif(${JP2KFLAG})
 
 get_cmake_property(_variableNames VARIABLES) # Get All VARIABLES
 foreach (_variableName ${_variableNames})
