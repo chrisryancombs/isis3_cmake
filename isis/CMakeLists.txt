@@ -106,7 +106,11 @@ option(buildCore       "Build the core ISIS modules"                 ON  )
 option(buildMissions   "Build the mission specific modules"          ON  )
 option(buildStaticCore "Build libisis3 static as well as dynamic"    OFF )
 option(buildTests      "Set up unit, application, and module tests." ON  )
-option(JP2KFLAG        "Whether or not to build using JPEG200 support" OFF )
+option(JP2KFLAG        "Whether or not to build using JPEG200 support" ON)
+
+if(JP2KFLAG)
+  set(JP2KFLAG 1)
+endif(JP2KFLAG)
 
 if(EXISTS ${isis3Data})
   set(ENV{ISIS3DATA} "${isis3Data}")

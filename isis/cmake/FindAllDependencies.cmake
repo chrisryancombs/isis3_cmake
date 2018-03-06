@@ -135,6 +135,7 @@ find_package(HDF5      1.8.15  REQUIRED)
 find_package(Jama      125     REQUIRED) # Jama version is 1.2.5, but v007 directory is "jama/jama125/"
 find_package(NN                REQUIRED)
 find_package(OpenCV    3.1.0   REQUIRED)
+find_package(OpenGL            REQUIRED)
 find_package(PCL       1.8     REQUIRED) # "pcl-${PCL_FIND_VERSION}"
 find_package(Protobuf  2.6.1   REQUIRED) # "google-protobuf/protobuf${Protobuf_FIND_VERSION}/"
 find_package(Qwt       6       REQUIRED) # "qwt${Qwt_FIND_VERSION}"
@@ -143,8 +144,6 @@ find_package(TIFF      4.0.5   REQUIRED) # "tiff/tiff-${TIFF_FIND_VERSION}"
 find_package(TNT       126     REQUIRED) # TNT version is 1.2.6, but v007 directory is "tnt/tnt126/"
 find_package(XercesC   3.1.2   REQUIRED) # "xercesc/xercesc-${XercesC_FIND_VERSION}/"
 find_package(X11       6       REQUIRED)
-find_package(OpenGL)
-message("OpenGL: ${OPENGL_INCLUDE_DIR}" )
 
 # v007 might have different versions installed for our mac and linux systems.
 # Im this case, we specify the version numbers being searched for in the non-traditional installs.
@@ -158,10 +157,10 @@ endif(APPLE)
 
 
 # Only include Kakadu if it is available
-# if(${JP2KFLAG})
+if(${JP2KFLAG})
   message("ENABLING KAKADU")
-  find_package(Kakadu)
-# endif(${JP2KFLAG})
+  find_package(Kakadu REQUIRED)
+endif(${JP2KFLAG})
 
 get_cmake_property(_variableNames VARIABLES) # Get All VARIABLES
 foreach (_variableName ${_variableNames})
@@ -201,9 +200,9 @@ list(REMOVE_DUPLICATES ALLLIBDIRS)
 list(REMOVE_DUPLICATES ALLLIBS)
 list(REMOVE_DUPLICATES ALLINCDIRS)
 
-# message(STATUS "ALL LIBS DIRS: ${ALLLIBDIRS}")
-# message(STATUS "ALL LIBS: ${ALLLIBS}")
-# message(STATUS "ALL INCS: ${ALLINCDIRS}")
+message(STATUS "ALL LIBS DIRS: ${ALLLIBDIRS}")
+message(STATUS "ALL LIBS: ${ALLLIBS}")
+message(STATUS "ALL INCS: ${ALLINCDIRS}")
 #---------------------------------------------------------------------------
 #  Define the third party distribution libraries (patterns)
 #---------------------------------------------------------------------------
