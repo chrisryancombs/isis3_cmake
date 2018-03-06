@@ -1,9 +1,14 @@
 pipeline { 
-    agent {         
+    agent {
         docker {
             label 'cmake'
             image 'chrisryancombs/docker_isis'
-            args  '-v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007 -v /usgs/cpkgs/isis3/data:/usgs/cpkgs/isis3/data -v /usgs/cpkgs/isis3/testData:/usgs/cpkgs/isis3/testData'  
+            args  '''\
+                    -v /usr/lib64:/usr/lib64 \
+                    -v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007 \
+                    -v /usgs/cpkgs/isis3/data:/usgs/cpkgs/isis3/data \
+                    -v /usgs/cpkgs/isis3/testData:/usgs/cpkgs/isis3/testData\
+                  '''  
         }
     }
     stages {
@@ -23,15 +28,15 @@ pipeline {
                 sh "cd build && ninja && ninja install"
             }
         }
-//        stage('Test'){
-//            steps {
-//                dir('build'){
-//                    sh '''
-//                        ctest -R _unit
-//                    '''
-//                }
-//            }
-//        }
+        stage('Test'){
+            steps {
+                dir('build'){
+                    sh '''
+                        hyper appTest
+                    '''
+                }
+            }
+        }
     }
     post {
 //        success {
@@ -42,7 +47,8 @@ pipeline {
 //            mail to: 'ccombs@usgs.gov',
 //                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
 //                    body: "Link: ${env.BUILD_URL}"
-            cleanWs()
+            sh "rm -rf build/* && rm -rf install/*"
+//            cleanWs()
         }
     }
 }

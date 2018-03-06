@@ -36,10 +36,6 @@ find_program(PROTOC protoc REQUIRED)
 
 include(FindProtobuf)
 
-
-find_package(Geos 3.5.0 REQUIRED)
-
-
 if(APPLE)
   find_package(Qt5 COMPONENTS
                   Core
@@ -162,10 +158,10 @@ endif(APPLE)
 
 
 # Only include Kakadu if it is available
-if(${JP2KFLAG})
+# if(${JP2KFLAG})
   message("ENABLING KAKADU")
   find_package(Kakadu)
-endif(${JP2KFLAG})
+# endif(${JP2KFLAG})
 
 get_cmake_property(_variableNames VARIABLES) # Get All VARIABLES
 foreach (_variableName ${_variableNames})
