@@ -8,6 +8,7 @@
 
 find_path(OPENGL_INCLUDE_DIR
   NAME gl.h
+  PATH_SUFFIXES "GL"
 )
 
 find_library(GL_LIBRARY
