@@ -19,8 +19,6 @@ list(APPEND CMAKE_INCLUDE_PATH
   /usgs/pkgs/local/v007/include/xercesc/xercesc-3.1.2/
   /usgs/pkgs/local/v007/include/tiff/tiff-4.0.5/
   /usr/lib64/
-  /usr/include/
-  /lib64/
 )
 
 set(CMAKE_PREFIX_PATH
@@ -44,6 +42,7 @@ set(CMAKE_PREFIX_PATH
   /opt/usgs/v007/proprietary/lib/
   /usr/lib/
   /usr/lib64/
+  /usr/include/
   /usr/local/lib/
 )
 
