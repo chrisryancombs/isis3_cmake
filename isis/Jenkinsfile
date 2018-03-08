@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "mkdir -p ./install ./build"
+                sh "ls /usr/include/GL && mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
