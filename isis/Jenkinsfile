@@ -14,10 +14,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                script{        
-                    env.ISISROOT = "$env.WORKSPACE/isis"
-                }
-                sh "mkdir -p ./install ./build && echo $ISISROOT"
+                sh "mkdir -p ./install ./build"
 
             }
         }
@@ -34,7 +31,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh "echo env.ISISROOT && cd build && ctest -R _unit"
+                sh "ISISROOT=$(pwd)/isis && cd build && ctest -R _unit"
             }
         }
     }
