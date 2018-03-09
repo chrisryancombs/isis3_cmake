@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh "ls /usr/include/GL && mkdir -p ./install ./build"
+                sh "mkdir -p ./install ./build"
             }
         }
         stage('Config') { 
@@ -30,11 +30,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                dir('build'){
-                    sh '''
-                        ctest -R _unit
-                    '''
-                }
+                sh "cd build && ctest -R _unit"
             }
         }
     }
