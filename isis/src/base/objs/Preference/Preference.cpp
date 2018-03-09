@@ -115,11 +115,11 @@ namespace Isis {
 
       // If its a unitTest then load with the unitTest preference file
       if(unitTest) {
-        p_preference->Load("/scratch/workspace/ISIS3_cmake/build/TestPreferences");
+        p_preference->Load("$ISISROOT/TestPreferences");
       }
       // Otherwise load the Isis system and personal preferences.
       else {
-        p_preference->Load("/scratch/workspace/ISIS3_cmake/build/IsisPreferences");
+        p_preference->Load("$ISISROOT/IsisPreferences");
 
         Isis::FileName userPref("$HOME/.Isis/IsisPreferences");
         if(userPref.fileExists()) {
