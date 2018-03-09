@@ -33,21 +33,21 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh "cd build && ctest -R _unit"
+                sh "echo $ISISROOT && cd build && ctest -R _unit"
             }
         }
     }
-    post {
+//    post {
 //        success {
 //            sh 'pwd && ls'
 //            archiveArtifacts artifacts: "build/objects/*.o"
 //        }
-        always {
+//        always {
 //            mail to: 'ccombs@usgs.gov',
 //                    subject: "Build Finished: ${currentBuild.fullDisplayName}",
 //                    body: "Link: ${env.BUILD_URL}"
-            sh "rm -rf build/* && rm -rf install/*"
+//            sh "rm -rf build/* && rm -rf install/*"
 //            cleanWs()
-        }
-    }
+//        }
+//    }
 }
