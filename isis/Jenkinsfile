@@ -32,7 +32,7 @@ pipeline {
             steps {
                 dir('build'){
                     sh '''
-                        hyper appTest
+                        ctest -R _unit
                     '''
                 }
             }
