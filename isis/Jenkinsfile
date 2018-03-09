@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''\
                     ISISROOT=/workspace/ISIS3_cmake/build/ \
-                    echo ${ISISROOT} \
+                    echo $ISISROOT \
                    '''
             }
         }
