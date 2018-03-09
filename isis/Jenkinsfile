@@ -15,7 +15,7 @@ pipeline {
         stage('Inject Variables') { 
             steps { 
                 sh '''
-                    mkdir -p ./install ./build
+                    mkdir -p ./install ./build\
                     ISISROOT=$(pwd)/isis
                    '''
             }
@@ -33,7 +33,10 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh "ISISROOT=$(pwd)/isis && echo $ISISROOT && cd build && ctest -R _unit"
+                sh '''\
+                    ISISROOT=$(pwd)/isis\ 
+                    cd build && ctest -R _unit
+                   '''
             }
         }
     }
