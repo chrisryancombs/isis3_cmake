@@ -4,11 +4,10 @@ pipeline {
             label 'cmake'
             image 'chrisryancombs/docker_isis'
             args  '''\
-                    -v /usr/lib64:/usr/lib64 \
                     -v /usgs/pkgs/local/v007:/usgs/pkgs/local/v007 \
                     -v /usgs/cpkgs/isis3/data:/usgs/cpkgs/isis3/data \
                     -v /usgs/cpkgs/isis3/testData:/usgs/cpkgs/isis3/testData\
-                    -e ISISROOT='/workspace/ISIS3_cmake/build/' \
+                    -e ISISROOT='${PWD}/build/' \
                   '''  
         }
     }
