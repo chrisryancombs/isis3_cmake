@@ -11,15 +11,13 @@ pipeline {
                   '''  
         }
     }
-    
-    environment {
-        ISISROOT = env.WORKSPACE+ '/isis'
-    }
-    
     stages {
         stage('Inject Variables') { 
             steps { 
                 sh "mkdir -p ./install ./build && echo $ISISROOT"
+                script{        
+                    ISISROOT = "$env.WORKSPACE/isis"
+                }
             }
         }
         stage('Config') { 
