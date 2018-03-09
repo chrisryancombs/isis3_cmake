@@ -14,9 +14,9 @@ pipeline {
     stages {
         stage('Inject Variables') { 
             steps { 
-                sh '''
-                    mkdir -p ./install ./build\
-                    ISISROOT=$(pwd)/isis
+                sh '''\
+                    mkdir -p ./install ./build \
+                    ISISROOT=$(pwd)/isis \
                    '''
             }
         }
