@@ -16,7 +16,7 @@ pipeline {
             steps { 
                 sh "mkdir -p ./install ./build && echo $ISISROOT"
                 script{        
-                    ISISROOT = "$env.WORKSPACE/isis"
+                    env.ISISROOT = "$env.WORKSPACE/isis"
                 }
             }
         }
