@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh "ISISROOT=${WORKSPACE}/build && cd build && ctest -R _unit"
+                sh "ISISROOT=${WORKSPACE}/build/ && cd build && ctest -R _unit"
             }
         }
     }
