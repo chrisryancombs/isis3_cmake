@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                sh "echo $ISISROOT && cd build && ctest -R _unit"
+                sh "ISISROOT=$(pwd)/isis && echo $ISISROOT && cd build && ctest -R _unit"
             }
         }
     }
