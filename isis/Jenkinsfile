@@ -24,18 +24,16 @@ pipeline {
             }
         }
         stage('Build') { 
-                dir('build') {
-                    sh "ninja && ninja install"
+                steps {
+                    sh "cd build && ninja && ninja install"
                 }
         }
         stage('Test'){
-            dir('build') {
-                test('Unit') {
-                    sh """
-                        cd build
-                        ctest -R _unit_
-                       """
-                }
+            test('Unit') {
+                sh """
+                    cd build
+                    ctest -R _unit_
+                   """
             }
         }
     }
