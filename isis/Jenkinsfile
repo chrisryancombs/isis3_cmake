@@ -30,10 +30,19 @@ pipeline {
                 sh "cd build && ninja && ninja install"
             }
         }
-        stage('Test'){
+        stage('Test Objects'){
             steps {
-                ignoreFailures = true
-                sh "cd build && ctest -R _unit_ && ctest -R _app_ && ctest -R _module_"
+                sh "cd build && ctest -R _unit_ || true"
+            }
+        }
+        stage('Test Apps'){
+            steps {
+                sh "cd build && ctest -R _app_ || true"
+            }
+        }
+        stage('Test Modules'){
+            steps {
+                sh "cd build && ctest -R _module_ || true"
             }
         }
     }
