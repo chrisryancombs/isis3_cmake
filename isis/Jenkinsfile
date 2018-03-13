@@ -30,19 +30,17 @@ pipeline {
                 sh "cd build && ninja && ninja install"
             }
         }
-        stage('Test Objects'){
-            steps {
-                sh "cd build && ctest -R _unit_ || true"
+        stage('Test'){
+            environment {
+                PATH=PATH:"${ISISROOT}/bin"
             }
-        }
-        stage('Test Apps'){
             steps {
-                sh "cd build && ctest -R _app_ || true"
-            }
-        }
-        stage('Test Modules'){
-            steps {
-                sh "cd build && ctest -R _module_ || true"
+                sh '''\
+                    cd build \
+                    ctest -R _unit_ || true \
+                    ctest -R _app_ || true \
+                    ctest -R _module_ || true
+                   '''
             }
         }
     }
