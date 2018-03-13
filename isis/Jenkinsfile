@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Test'){
             environment {
-                PATH=PATH:"${ISISROOT}/bin"
+                PATH="$PATH:$ISISROOT/bin"
             }
             steps {
                 sh '''\
