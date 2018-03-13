@@ -12,36 +12,30 @@ pipeline {
     }
     environment {
         ISISROOT= "${workspace}" + "/build/"
+        PATH="${PATH}:${ISISROOT}/bin"
     }
     stages {
         stage('Config') { 
             steps { 
                 sh '''\
-                    echo $ISISROOT && \
-                    mkdir -p ./install ./build && \
-                    cd build && \
+                    mkdir -p ./install ./build && cd build && \
                     cmake -GNinja -DCMAKE_INSTALL_PREFIX=../install -Disis3Data=/usgs/cpkgs/isis3/data -Disis3TestData=/usgs/cpkgs/isis3/testData ../isis \
                    '''
-
             }
         }
         stage('Build') { 
-            steps { 
-                sh "cd build && ninja && ninja install"
-            }
+                dir('build') {
+                    sh "ninja && ninja install"
+                }
         }
         stage('Test'){
-            environment {
-                PATH="$PATH:$ISISROOT/bin"
-            }
-            steps {
-                bash """
-                    cd build
- //                   ctest -R _unit_
-                    ctest -R isis3_unit_test_ProcessExportPds4  &&  ls
-//                    ctest -R _app_
-//                    ctest -R _module_
-                   """
+            dir('build') {
+                test('Unit') {
+                    sh """
+                        cd build
+                        ctest -R _unit_
+                       """
+                }
             }
         }
     }
