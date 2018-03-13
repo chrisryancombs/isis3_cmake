@@ -30,19 +30,9 @@ pipeline {
                 sh "cd build && ninja && ninja install"
             }
         }
-        stage('Unit Tests'){
+        stage('Test'){
             steps {
-                sh "cd build && ctest -R _unit_"
-            }
-        }
-        stage('App Tests'){
-            steps {
-                sh "cd build && ctest -R _app_"
-            }
-        }
-        stage('Module Tests'){
-            steps {
-                sh "cd build && ctest -R _module_"
+                sh "cd build && ctest -R _unit_ && ctest -R _app_ && ctest -R _module_"
             }
         }
     }
