@@ -29,7 +29,7 @@ pipeline {
                 }
         }
         stage('Test'){
-            test('Unit') {
+            steps {
                 sh """
                     cd build
                     ctest -R _unit_
