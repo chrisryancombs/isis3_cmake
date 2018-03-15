@@ -33,8 +33,8 @@ pipeline {
                 sh """
                     set +e
                     cd build
-                    ctest -R _app_ -V
-                    ls
+                    ctest -j8 -R _unit_ -V
+                    ctest -j8 -R _app_ -V
                    """
             }
         }
