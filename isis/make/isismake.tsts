@@ -223,7 +223,8 @@ compare: FORCE
 	        $(MAKE) comparefiles;                                              \
 	      fi;                                                                  \
 	    fi;                                                                    \
-	  else                                                                     \
+	  else
+	    echo $TRUTH;
 	    MSG='$(NOTRUTH)';                                                      \
 	    echo -n $(CURTIMESTAMP) >> errors.txt;                                 \
 	    $(PRINTF) "$(BLANKS)  " >> errors.txt;                                 \
