@@ -161,7 +161,8 @@ test: FORCE clean
 	      $(MAKE) comparefiles;                                                \
 	    fi;                                                                    \
 	  fi;                                                                      \
-	else                                                                       \
+	else
+          echo "1";
 	  MSG='$(NOTRUTH)';                                                        \
 	  echo -n $(CURTIMESTAMP) >> errors.txt;                                   \
 	  $(PRINTF) "$(BLANKS)  " >> errors.txt;                                   \
@@ -224,6 +225,7 @@ compare: FORCE
 	      fi;                                                                  \
 	    fi;                                                                    \
 	  else
+	    echo "2";
 	    echo $TRUTH;
 	    MSG='$(NOTRUTH)';                                                      \
 	    echo -n $(CURTIMESTAMP) >> errors.txt;                                 \
