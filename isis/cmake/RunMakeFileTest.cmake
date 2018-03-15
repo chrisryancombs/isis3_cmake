@@ -51,7 +51,7 @@ function(run_app_makefile_test makefile inputFolder outputFolder truthFolder bin
 #   execute_process(COMMAND rm -f ${logFile})
 
   execute_process(COMMAND make test WORKING_DIRECTORY ${sourceFolder} OUTPUT_VARIABLE result)
-
+  message("result: ${result}")
   if (result MATCHES "OK")
       set(failed "OFF")
   else()
