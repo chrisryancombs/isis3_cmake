@@ -98,7 +98,7 @@ TESTFAILED =$(PRINTF) $(BLANKS) \"\"; echo -n " Failed ... Case [$(CASE)] "
 TESTFILEFAILED =echo Failed ... File
 FILENOTFOUND =echo Failed ... File does not exist
 UNKNOWNFILE =echo Failed ... Unknown file type
-NOTRUTH =echo Failed ... No truth folder or files
+NOTRUTH =echo "Failed ... No truth folder or files in ${TRUTH}"
 NOTRUTHFILE =echo Failed ... No files in truth directory
 NOOUTPUT =echo Error ... Output folder does not exist
 FILECOUNTMISMATCH =echo Failed ... Number of files in truth and output folder do not match
@@ -161,9 +161,7 @@ test: FORCE clean
 	      $(MAKE) comparefiles;                                                \
 	    fi;                                                                    \
 	  fi;                                                                      \
-	else\
-          echo "1";\
-	  MSG='$(NOTRUTH)';                                                        \
+	else                                                                       \
 	  echo -n $(CURTIMESTAMP) >> errors.txt;                                   \
 	  $(PRINTF) "$(BLANKS)  " >> errors.txt;                                   \
 	  $$MSG >> errors.txt;                                                     \
@@ -224,9 +222,7 @@ compare: FORCE
 	        $(MAKE) comparefiles;                                              \
 	      fi;                                                                  \
 	    fi;                                                                    \
-	  else\
-	    echo "2";\
-	    echo $TRUTH;\
+	  else                                                                     \
 	    MSG='$(NOTRUTH)';                                                      \
 	    echo -n $(CURTIMESTAMP) >> errors.txt;                                 \
 	    $(PRINTF) "$(BLANKS)  " >> errors.txt;                                 \
