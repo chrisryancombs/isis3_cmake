@@ -26,9 +26,13 @@ pipeline {
             }
         }
         stage('Build') { 
-                steps {
-                    sh "cd build && ninja -j8 && ninja install"
-                }
+            steps {
+                sh """
+                    set +e
+                    cd build
+                    ninja -j8 && ninja install
+                   """
+            }
         }
         stage('Test'){
             steps {
