@@ -10,43 +10,6 @@ cmake_minimum_required(VERSION 3.4)
 # Point cmake to our other CMake files.
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-list(APPEND CMAKE_INCLUDE_PATH
-  /usgs/pkgs/local/v007/include/
-  /usgs/pkgs/local/v007/bin/
-  /usgs/pkgs/local/v007/lib/
-  /usgs/pkgs/local/v007/objects/
-  /usgs/pkgs/local/v007/include/google-protobuf/protobuf2.6.1/
-  /usgs/pkgs/local/v007/include/xercesc/xercesc-3.1.2/
-  /usgs/pkgs/local/v007/include/tiff/tiff-4.0.5/
-  /usr/lib64/
-  /usr/include/
-)
-
-set(CMAKE_PREFIX_PATH
-  /usgs/pkgs/local/v007/include/
-  /usgs/pkgs/local/v007/bin/
-  /usgs/pkgs/local/v007/lib/
-  /usgs/pkgs/local/v007/libexec/
-  /opt/usgs/v007/ports/Library/Frameworks/
-  /opt/usgs/v007/ports/libexec/
-  /opt/usgs/v007/ports/bin/
-  /opt/usgs/v007/ports/lib/
-  /opt/usgs/v007/ports/include/
-  /opt/usgs/v007/ports/libexec/qt5
-  /opt/usgs/v007/ports/libexec/qt5/bin/
-  /opt/usgs/v007/ports/libexec/qt5/lib/
-  /opt/usgs/v007/3rdparty/bin
-  /opt/usgs/v007/3rdparty/include/
-  /opt/usgs/v007/3rdparty/lib/
-  /opt/usgs/v007/proprietary/
-  /opt/usgs/v007/proprietary/include/
-  /opt/usgs/v007/proprietary/lib/
-  /usr/lib/
-  /usr/lib64/
-  /usr/include/
-  /usr/local/lib/
-)
-
 set(CMAKE_FIND_FRAMEWORK LAST)
 
 include(AddIsisModule)
@@ -145,6 +108,7 @@ endif()
 
 if(${testOutputDir} STREQUAL "OFF")
   message("Writing test data folders to = ${CMAKE_BINARY_DIR}/testOutputDir")
+  set(testOutputDir "${CMAKE_BINARY_DIR}/testOutputDir")
   execute_process(COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testOutputDir)
 else()
   # User specified a test output folder, make sure it exists.
