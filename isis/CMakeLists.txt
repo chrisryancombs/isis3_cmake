@@ -59,7 +59,6 @@ include(InstallThirdParty)
 
 project (USGS_ISIS)
 
-
 # Short and long name of this package
 set(PACKAGE            "ISIS")
 set(PACKAGE_NAME       "USGS ISIS")
@@ -96,21 +95,31 @@ set(BUILD_SHARED_LIBS ON)
 
 # Specify flags used
 set(thirdPartyCppFlags -Wall -std=c++11 -DISIS_LITTLE_ENDIAN=1 -fPIC -Wno-unused-parameter -Wno-overloaded-virtual)
-#set(thirdPartyCppFlags -Wall -ansi -DISIS_LITTLE_ENDIAN=1 -fPIC -Wno-unused-parameter -Wno-overloaded-virtual)
 
 # Specify user options that can be passed in with the initial CMake command.
-option(isis3Data       "Directory containing Isis3Data"              "NA")
-option(isis3TestData   "Directory containing Isis3TestData"          "NA")
-option(testOutputDir   "Directory to store app test output folders"  "NA")
-option(buildCore       "Build the core ISIS modules"                 ON  )
-option(buildMissions   "Build the mission specific modules"          ON  )
-option(buildStaticCore "Build libisis3 static as well as dynamic"    OFF )
-option(buildTests      "Set up unit, application, and module tests." ON  )
-option(JP2KFLAG        "Whether or not to build using JPEG200 support" ON)
+option(isis3Data       "Directory containing Isis3Data"                 OFF )
+option(isis3TestData   "Directory containing Isis3TestData"             OFF )
+option(testOutputDir   "Directory to store app test output folders"     OFF )
+option(buildCore       "Build the core ISIS modules"                    ON  )
+option(buildMissions   "Build the mission specific modules"             ON  )
+option(buildStaticCore "Build libisis3 static as well as dynamic"       OFF )
+option(buildTests      "Set up unit, application, and module tests."    ON  )
+option(JP2KFLAG        "Whether or not to build using JPEG2000 support" ON  )
+option(develop         "Use a devleopment configuration"                ON  )
 
+# options only allow on/off but this flag is piped into ISIS as ENABLEJP2K
+# needs to be either 1 or 0 for C style true false
 if(JP2KFLAG)
   set(JP2KFLAG 1)
-endif(JP2KFLAG)
+endif()
+
+# Prioritize passed in variables over env vars, probably a better way to do this
+if(DEFINED ENV{ISIS3DATA} AND NOT isis3Data)
+  set(isis3Data $ENV{ISIS3DATA})
+endif()
+if(DEFINED ENV{ISIS3TESTDATA} AND NOT isis3TestData)
+  set(isis3TestData $ENV{ISIS3TESTDATA})
+endif()
 
 if(EXISTS ${isis3Data})
   set(ENV{ISIS3DATA} "${isis3Data}")
@@ -118,12 +127,14 @@ if(EXISTS ${isis3Data})
 else()
   message(WARNING "Isis3Data directory ${isis3Data} not found, unit tests will fail.")
 endif()
+
 if(EXISTS ${isis3TestData})
   set(ENV{ISIS3TESTDATA} "${isis3TestData}")
   message("Using ISIS3TESTDATA = $ENV{ISIS3TESTDATA}")
 else()
   message(WARNING "Isis3TestData directory ${isis3TestData} not found, application and module tests will fail.")
 endif()
+
 #if(EXISTS ${CMAKE_INSTALL_PREFIX})
 #  set(ENV{CMAKE_INSTALL_PREFIX} "${CMAKE_INSTALL_PREFIX}")
 #  message("Using INSTALL PREFIX = $ENV{CMAKE_INSTALL_PREFIX}")
