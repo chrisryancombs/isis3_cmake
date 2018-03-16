@@ -14,7 +14,6 @@ pipeline {
         ISISROOT="${workspace}" + "/build/"
         ISIS3TESTDATA="/usgs/cpkgs/isis3/testData/"
         ISIS3DATA="/usgs/cpkgs/isis3/data/"
-        PATH="${PATH}:${ISISROOT}/bin"
     }
     stages {
         stage('Config') { 
@@ -40,9 +39,9 @@ pipeline {
                     export PATH="${PATH}:${ISISROOT}/bin"
                     set +e
                     cd build
-                    ctest -j8 -R _unit_ -V
-                    ctest -j8 -R _app_ -V
-                    ctest -j8 -R _module_ -V
+                    ctest -j8 -R _unit_ 
+                    ctest -j8 -R _app_ 
+                    ctest -j8 -R _module_ 
                    """
             }
         }
