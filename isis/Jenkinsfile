@@ -37,6 +37,7 @@ pipeline {
         stage('Test'){
             steps {
                 sh """
+                    export PATH="${PATH}:${ISISROOT}/bin"
                     set +e
                     cd build
                     ctest -j8 -R _unit_ -V
