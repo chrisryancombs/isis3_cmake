@@ -229,9 +229,9 @@ list(REMOVE_DUPLICATES ALLLIBDIRS)
 list(REMOVE_DUPLICATES ALLLIBS)
 list(REMOVE_DUPLICATES ALLINCDIRS)
 
-message(STATUS "ALL LIBS DIRS: ${ALLLIBDIRS}")
-message(STATUS "ALL LIBS: ${ALLLIBS}")
-message(STATUS "ALL INCS: ${ALLINCDIRS}")
+# message(STATUS "ALL LIBS DIRS: ${ALLLIBDIRS}")
+# message(STATUS "ALL LIBS: ${ALLLIBS}")
+# message(STATUS "ALL INCS: ${ALLINCDIRS}")
 #---------------------------------------------------------------------------
 #  Define the third party distribution libraries (patterns)
 #---------------------------------------------------------------------------
@@ -373,7 +373,7 @@ foreach(lib ${RAW_DYNAMIC_LIBS})
   endif()
 endforeach()
 
-message("THIRDPARTYLIBS = ${THIRDPARTYLIBS}")
+# message("THIRDPARTYLIBS = ${THIRDPARTYLIBS}")
 
 # Plugins
 file(GLOB_RECURSE THIRDPARTYPLUGINS "${PLUGIN_DIR}/*${SO}")
