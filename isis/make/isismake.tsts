@@ -162,6 +162,7 @@ test: FORCE clean
 	    fi;                                                                    \
 	  fi;                                                                      \
 	else                                                                       \
+	  MSG='$(NOTRUTH)';                                                        \
 	  echo -n $(CURTIMESTAMP) >> errors.txt;                                   \
 	  $(PRINTF) "$(BLANKS)  " >> errors.txt;                                   \
 	  $$MSG >> errors.txt;                                                     \
