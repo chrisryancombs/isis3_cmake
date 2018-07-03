@@ -99,12 +99,9 @@ else()
   message(WARNING "Isis3TestData directory ${isis3TestData} not found, application and module tests will fail.")
 endif()
 
-#if(EXISTS ${CMAKE_INSTALL_PREFIX})
-#  set(ENV{CMAKE_INSTALL_PREFIX} "${CMAKE_INSTALL_PREFIX}")
-#  message("Using INSTALL PREFIX = $ENV{CMAKE_INSTALL_PREFIX}")
-#else()
-#  message(WARNING "Isis3TestData directory ${CMAKE_INSTALL_PREFIX} not found, application and module tests will fail.")
-#endif()
+if(develop)
+  
+endif()
 
 if(${testOutputDir} STREQUAL "OFF")
   message("Writing test data folders to = ${CMAKE_BINARY_DIR}/testOutputDir")
@@ -184,7 +181,7 @@ endif()
 
 # Add a config file to the install bin directory so that QT can find the plugin libraries.
 file(WRITE "${CMAKE_BINARY_DIR}/qt.conf" "[Paths]\nPlugins=../3rdParty/plugins/\n")
-install(FILES "${CMAKE_BINARY_DIR}/qt.conf" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install(FILES "${CMAKE_BINARY_DIR}/qt.conf" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/xml)
 
 #Create the inc directory
 execute_process(COMMAND mkdir -p ${CMAKE_BINARY_DIR}/inc)
@@ -203,7 +200,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/make DESTINATION ${CMAKE_INSTALL_PREFIX})
 add_subdirectory(src objects)
 
 # Set up third party libraries for installation
-# install_third_party()
+install_third_party()
 
 # # Create a link from the build/objects directory to each folder in 3rdPartyLibs/plugins.
 # # - This is required so that the plugins can be found during unit tests.
